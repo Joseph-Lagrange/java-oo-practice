@@ -11,6 +11,8 @@ public class ConfigCommand {
 
     private String description;
 
+    private String method;
+
     public static ConfigCommand create(int moduleId, int cmd) {
         ConfigCommand command = new ConfigCommand();
         command.moduleId = moduleId;
@@ -42,5 +44,13 @@ public class ConfigCommand {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
     }
 }

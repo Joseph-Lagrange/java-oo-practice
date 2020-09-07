@@ -1,7 +1,9 @@
 package com.twu.manager;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.twu.config.ConfigCommand;
+import com.twu.constant.Constant;
 import jxl.Sheet;
 import jxl.Workbook;
 
@@ -34,6 +36,17 @@ public class CommandManager {
     }
 
     /**
+     * 获取登录命令
+     */
+    public static List<ConfigCommand> getLoginCommands() {
+        ArrayList<ConfigCommand> list = Lists.newArrayList();
+        list.add(commandContainer.get(Constant.User_Command).get(0));
+        list.add(commandContainer.get(Constant.Admin_Command).get(0));
+        list.add(commandContainer.get(Constant.Quit_Command).get(0));
+        return list;
+    }
+
+    /**
      * 初始化命令配置类容器
      */
     public static void init(String containerName) {
@@ -63,6 +76,7 @@ public class CommandManager {
                             command.setModuleId(Integer.parseInt(sheet.getCell(0, row).getContents()));
                             command.setCmd(Integer.parseInt(sheet.getCell(1, row).getContents()));
                             command.setDescription(sheet.getCell(2, row).getContents());
+                            command.setMethod(sheet.getCell(3, row).getContents());
                             if (!container.containsKey(command.getModuleId())) {
                                 container.put(command.getModuleId(), Maps.newTreeMap());
                             }
